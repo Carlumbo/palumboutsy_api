@@ -15,13 +15,21 @@ class Api::V1::ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(product_params)
+      product =  Product.create!( 
+          title: params['product']['title'],
+          image: params['product']['image'],
+          price: params['product']['price'],
+          rating: params['product']['rating'],
+  
+          )
 
-    if @product.save
-      render json: @product, status: :created, location: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
+    #@product = Product.new(product_params)
+   
+    #if @product.create
+    #  render json: @product, status: :created, location: @product
+    #else
+    #  render json: @product.errors, status: :unprocessable_entity
+    #end
   end
 
   # PATCH/PUT /products/1
